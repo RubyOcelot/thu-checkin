@@ -47,14 +47,8 @@ r = s.post(REPORT_URL, data={
     "last_touch_sars": "0",
     "last_touch_sars_date": "",
     "last_touch_sars_detail": "",
-    "last_touch_hubei": "0",
-    "last_touch_hubei_date": "",
-    "last_touch_hubei_detail": "",
-    "last_cross_hubei": "0",
-    "last_cross_hubei_date": "",
-    "last_cross_hubei_detail": "",
-    "return_dest": "1",
-    "return_dest_detail": "",
+    #"return_dest": "1",
+    #"return_dest_detail": "",
     "other_detail": "\uFFFD",
     # https://twitter.com/tenderlove/status/722565868719177729
 })
