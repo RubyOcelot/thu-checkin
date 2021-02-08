@@ -26,6 +26,20 @@ r = s.post("https://passport.ustc.edu.cn/login", data={
     "button": "",
 })
 
+
+back_to_school = os.environ.get("IS_INSCHOOL", "2")
+
+if back_to_school=="1":
+    is_inchool = "4"        #mid
+    now_status = "1"        #school
+    now_province = "340000" #Anhui
+    now_city = "340100"     #Hefei
+else:
+    now_status = "2"        #home
+    now_province = os.environ['PROVINCE']
+    now_city = os.environ["CITY"]    
+
+
 # Parse the "_token" key out
 x = re.search(r"""<input.*?name="_token".*?>""", r.text).group(0)
 token = re.search(r'value="(\w*)"', x).group(1)
@@ -33,15 +47,14 @@ r = s.post(REPORT_URL, data={
     "_token": token,
     "now_address": "1",
     "gps_now_address": "",
-    "now_province": "340000",
+    "now_province": now_province, 
     "gps_province": "",
-    "now_city": "340100",
+    "now_city": now_city,     
     "gps_city": "",
-    "is_inschool": "4",
     "now_detail": "",
     "body_condition": "1",
     "body_condition_detail": "",
-    "now_status": "1",
+    "now_status": now_status,
     "now_status_detail": "",
     "has_fever": "0",
     "last_touch_sars": "0",
@@ -52,6 +65,9 @@ r = s.post(REPORT_URL, data={
     "other_detail": "\uFFFD",
     # https://twitter.com/tenderlove/status/722565868719177729
 })
+
+if back_to_school:
+    data["is_inschool"] = is_inschool
 
 # Fail if not 200
 r.raise_for_status()
