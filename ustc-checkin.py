@@ -27,7 +27,7 @@ r = s.post("https://passport.ustc.edu.cn/login", data={
 })
 
 
-back_to_school = os.environ.get("IS_INSCHOOL", "2")
+back_to_school = os.environ["IS_INSCHOOL"]
 
 if back_to_school=="1":
     is_inchool = "4"        #mid
