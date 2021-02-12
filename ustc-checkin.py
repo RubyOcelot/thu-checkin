@@ -30,7 +30,7 @@ r = s.post("https://passport.ustc.edu.cn/login", data={
 back_to_school = os.environ["IS_INSCHOOL"]
 
 if back_to_school=="1":
-    is_inschool = "4"        #mid
+    is_inschool = "4"       #mid
     now_status = "1"        #school
     now_province = "340000" #Anhui
     now_city = "340100"     #Hefei
@@ -43,7 +43,8 @@ else:
 # Parse the "_token" key out
 x = re.search(r"""<input.*?name="_token".*?>""", r.text).group(0)
 token = re.search(r'value="(\w*)"', x).group(1)
-r = s.post(REPORT_URL, data={
+
+data={
     "_token": token,
     "now_address": "1",
     "gps_now_address": "",
@@ -64,10 +65,11 @@ r = s.post(REPORT_URL, data={
     #"return_dest_detail": "",
     "other_detail": "\uFFFD",
     # https://twitter.com/tenderlove/status/722565868719177729
-})
-
+}
 if back_to_school=="1":
     data["is_inschool"] = is_inschool
+r = s.post(REPORT_URL, data=data)
+
 
 # Fail if not 200
 r.raise_for_status()
