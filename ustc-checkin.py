@@ -30,7 +30,7 @@ r = s.post("https://passport.ustc.edu.cn/login", data={
 back_to_school = os.environ["IS_INSCHOOL"]
 
 if back_to_school=="1":
-    is_inchool = "4"        #mid
+    is_inschool = "4"        #mid
     now_status = "1"        #school
     now_province = "340000" #Anhui
     now_city = "340100"     #Hefei
@@ -66,7 +66,7 @@ r = s.post(REPORT_URL, data={
     # https://twitter.com/tenderlove/status/722565868719177729
 })
 
-if back_to_school:
+if back_to_school=="1":
     data["is_inschool"] = is_inschool
 
 # Fail if not 200
