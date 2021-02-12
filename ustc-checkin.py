@@ -73,3 +73,6 @@ r = s.post(REPORT_URL, data=data)
 
 # Fail if not 200
 r.raise_for_status()
+
+# Fail if not reported
+assert r.text.find("上报成功") >= 0
